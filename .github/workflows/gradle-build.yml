@@ -37,6 +37,14 @@ jobs:
       # 构建产物：清理并生成 jar，输出到 build/libs/
       - name: Build with Gradle
         run: ./gradlew clean jar
+      - name: Verify JAR artifact exists
+        run: |
+          if ls build/libs/*.jar >/dev/null 2>&1; then
+            echo "JAR found."
+          else
+            echo "::error::No JAR found in build/libs. Ensure your Gradle project produces a jar (apply 'java' plugin and have sources)."
+            exit 1
+          fi
 
       # 发布 Release：仅在标签触发时执行，附加 jar 并生成说明
       - name: Publish GitHub Release
@@ -48,7 +56,6 @@ jobs:
           draft: false # 非草稿，直接发布
           prerelease: false # 非预发布
           generate_release_notes: true # 自动生成 Release Notes
-          files: |
-            build/libs/*.jar # 要上传的构建文件
+          files: build/libs/*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub 自动提供的令牌
