@@ -51,8 +51,13 @@ class MyHttpHandler implements HttpHandler {
 
         // 如果是 POST 请求：添加备注并把请求体输出到控制台，便于调试
         if (isPost(requestToBeSent)) {
-            annotations = annotations.withNotes("Request was a post"); // 给该请求增加备注说明
+            annotations = annotations.withNotes("请求为 POST"); // 给该请求增加备注说明
+            logging.logToOutput("检测到 POST 请求，打印请求体：");       // 记录提示信息
             logging.logToOutput(requestToBeSent.bodyToString());       // 记录请求体内容
+           
+            logging.raiseInfoEvent("检测到 POST 请求，打印请求体：");       // 记录提示信息
+            logging.raiseInfoEvent(requestToBeSent.bodyToString());       // 记录请求体内容
+            
         }
 
         // 修改请求：为 URL 追加一个示例参数 foo=bar
