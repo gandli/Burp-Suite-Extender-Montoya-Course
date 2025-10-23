@@ -11,6 +11,12 @@
   - macOS：`brew install bell-sw/liberica/liberica-jdk21-full`
   - Windows：`scoop bucket add java && scoop install java/liberica21-full-jdk`
 
+## 调试
+
+```
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address="*:5005" -jar "/Applications/Burp Suite Community Edition.app/Contents/Resources/app/burpsuite_community.jar"
+```
+
 ## 参考资料 📚
 
 - 🧩 [Montoya API（GitHub 仓库）](https://github.com/PortSwigger/burp-extensions-montoya-api)
