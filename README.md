@@ -19,7 +19,7 @@
 java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address="*:5005" -jar "/Applications/Burp Suite Community Edition.app/Contents/Resources/app/burpsuite_community.jar"
 ```
 
-![快捷调试](截屏2025-10-23 13.23.14.png)
+![快捷调试](IDEA调试.png)
 
 ### vscode 调试
 
