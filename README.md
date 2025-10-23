@@ -13,8 +13,59 @@
 
 ## 调试
 
-```
+### IDEA ce 调试
+
+```bash
 java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address="*:5005" -jar "/Applications/Burp Suite Community Edition.app/Contents/Resources/app/burpsuite_community.jar"
+```
+
+![快捷调试](截屏2025-10-23 13.23.14.png)
+
+### vscode 调试
+
+.vscode/launch.json
+
+```json
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Attach to Burp on 5005",
+            "request": "attach",
+            "hostName": "127.0.0.1",
+            "port": 5005,
+            "preLaunchTask": "Start Burp JDWP 5005"
+        }
+    ]
+}
+```
+
+.vscode/tasks.json
+
+```json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Burp JDWP 5005",
+      "type": "process",
+      "command": "java",
+      "args": [
+        "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=127.0.0.1:5005",
+        "-jar",
+        "/Applications/Burp Suite Community Edition.app/Contents/Resources/app/burpsuite_community.jar"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
 ```
 
 ## 参考资料 📚

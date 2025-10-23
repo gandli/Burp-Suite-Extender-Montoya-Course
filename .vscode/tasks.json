@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Burp JDWP 5005",
+      "type": "process",
+      "command": "java",
+      "args": [
+        "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=127.0.0.1:5005",
+        "-jar",
+        "/Applications/Burp Suite Community Edition.app/Contents/Resources/app/burpsuite_community.jar"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
